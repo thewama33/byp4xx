@@ -420,3 +420,147 @@ then
 else
 echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
+echo -n "Proxy-Host payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "Proxy-Host: 127.0.0.1" -X GET "$URL$DIR")
+if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"Proxy-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+if [[ ${STATUS} =~ 2.. ]]
+then
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forwarded-By payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-By: 127.0.0.1" -X GET "$URL$DIR")
+if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarded-By: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+if [[ ${STATUS} =~ 2.. ]]
+then
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forwarded-For-Original payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-For-Original: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarded-For-Original: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forwarded-Server payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-Server: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarded-Server: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forwarder-For payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarder-For: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarder-For: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forward-For payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forward-For: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forward-For: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Original-Remote-Addr payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Original-Remote-Addr: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Original-Remote-Addr: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Proxy-Url payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Proxy-Url: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Proxy-Url: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Proxy-Url payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Proxy-Url: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Proxy-Url: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Forwarded-Proto payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-Proto: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarded-Proto: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Real-Ip payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Real-Ip: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Real-Ip: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
+echo -n "X-Remote-Addr payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Remote-Addr: 127.0.0.1" -X GET "$URL$DIR")
+if [[ ${STATUS} =~ 2.. ]]
+then
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Remote-Addr: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+elif [[ ${STATUS} =~ 3.. ]]
+then 
+	echo -e "\e[1m\e[33m$STATUS\e[0m"
+else
+echo -e "\e[1m\e[31m$STATUS\e[0m"
+fi
